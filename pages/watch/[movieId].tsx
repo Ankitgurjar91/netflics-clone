@@ -4,7 +4,7 @@ import { AiOutlineArrowLeft } from "react-icons/ai";
 import useMovie from "@/hooks/useMovie";
 
 
-const watch = () => {
+const Watch = () => {
     const router = useRouter();
     const { movieId } = router.query;
     console.log("This is movie ID: ", movieId)
@@ -44,5 +44,5 @@ const watch = () => {
     )
 }
 
-export default watch;
+export default Watch;
 
