@@ -1,0 +1,48 @@
+import React from "react";
+import { useRouter } from  "next/router";
+import { AiOutlineArrowLeft } from "react-icons/ai";
+import useMovie from "@/hooks/useMovie";
+
+
+const watch = () => {
+    const router = useRouter();
+    const { movieId } = router.query;
+    console.log("This is movie ID: ", movieId)
+
+    const { data } = useMovie(movieId as string);
+    console.log("This is the data", data)
+
+    return (
+        <div>
+          <nav 
+            className="
+              fixed
+              w-full
+              p-4
+              z-10
+              flex
+              flex-items
+              items-center
+              gap-8
+              bg-black
+              bg-opacity-70
+            ">
+                <AiOutlineArrowLeft onClick={() => router.push('/')}className='text-white cursor-pointer' size={40} />
+                <p className="text-white text-1xl md:text-3xl font-bold">
+                    <span>
+                        Watching:
+                    </span>
+                    {data?.title}
+                </p>
+            </nav>
+           <video
+             autoPlay
+             controls
+             className="h-full w-full" 
+           src={data?.videoUrl}></video>
+        </div>
+    )
+}
+
+export default watch;
+
